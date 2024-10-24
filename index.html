@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Accueil - AlzGheimer</title>
     <link rel="stylesheet" href="/Git_M050/AlzGheimer/css/style.css" />
-    <link rel="shortcut icon" href="assets/images/thithi.jpg" />
+    <link rel="shortcut icon" href="assets/icon/icon.png" />
   </head>
   <body>
     <section class="banner">
@@ -14,36 +14,47 @@
         <i>Improve your Memory &trade; </i>
       </header>
       <section class="navbar">
-        <section class="button">
-          <a href="index.html">
+        <section class="left">
+        <a href="index.html">
+          <section class="button">
             <h3>Accueil</h3>
-          </a>
-        </section>
-        <section class="button">
-          <a href="register.html">
+          </section>
+        </a>
+        <a id="register" href="register.html" >
+          <section class="button">
             <h3>Créer un compte</h3>
-          </a>
-        </section>
-        <section class="button">
-          <a href="login.html">
+          </section>
+        </a>
+        <a id="login" href="login.html">
+          <section class="button">
             <h3>Se connecter</h3>
-          </a>
-        </section>
-        <section class="button">
-          <a href="profile.html">
+          </section>
+        </a>
+        <a id="profile" href="profile.html">
+          <section class="button">
             <h3>Profil</h3>
-          </a>
-        </section>
-        <section class="button">
-          <a href="game.html">
+          </section>
+        </a>
+        <a href="game.html">
+          <section class="button">
             <h3>Jouer</h3>
-          </a>
+          </section>
+        </a>
+        </section>
+        <section class="right">
+        <a id="disconnect" href="login.html">
+          <section class="button">
+            <h3>
+              Déconnexion
+            </h3>
+          </section>
+        </a>
         </section>
       </section>
     </section>
     <main>
       <section class="body-top">
-        <p class="description" >
+        <p class="description">
           Les règles du Memory sont très simples. <br />
           Des trésors vous sont cachés, pour en remporter un, il suffit de
           dévoiler en un seul tour les cartes jumelées. Si les cartes ne
@@ -52,10 +63,9 @@
           continuer votre lancée et faire un essai de plus. La personne qui
           remporte le plus de trésors gagne la partie. Bonne chance, capitaine.
         </p>
-        <h2><i>Insérer image une fois que les assets seront complètes</i></h2>
+        <img id="presentation" src="assets/icon/presentation.png" alt="" width=500px>
       </section>
     </main>
-
-
+    <script src="js/mainPage.js" type="module"></script>
   </body>
 </html>

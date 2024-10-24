@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>AlzGheimer</title>
     <link rel="stylesheet" href="/Git_M050/AlzGheimer/css/style.css" />
-    <link rel="shortcut icon" href="assets/images/thithi.jpg" />
-        <script type="module" src="js/memory.js" defer></script>
+    <link rel="shortcut icon" href="assets/icon/icon.png" />
+    <script type="module" src="js/memory.js" defer></script>
   </head>
   <body>
     <section class="banner">
@@ -15,41 +15,51 @@
         <i>Improve your Memory &trade; </i>
       </header>
       <section class="navbar">
-        <section class="button">
-          <a href="index.html">
+         <section class="left">
+        <a href="index.html">
+          <section class="button">
             <h3>Accueil</h3>
-          </a>
-        </section>
-        <section class="button">
-          <a href="register.html">
+          </section>
+        </a>
+        <a id="register" href="register.html" >
+          <section class="button">
             <h3>Créer un compte</h3>
-          </a>
-        </section>
-        <section class="button">
-          <a href="login.html">
+          </section>
+        </a>
+        <a id="login" href="login.html">
+          <section class="button">
             <h3>Se connecter</h3>
-          </a>
-        </section>
-        <section class="button">
-          <a href="profile.html">
+          </section>
+        </a>
+        <a id="profile" href="profile.html">
+          <section class="button">
             <h3>Profil</h3>
-          </a>
-        </section>
-        <section class="button">
-          <a href="game.html">
+          </section>
+        </a>
+        <a href="game.html">
+          <section class="button">
             <h3>Jouer</h3>
-          </a>
+          </section>
+        </a>
+        </section>
+       <section class="right">
+        <a id="disconnect" href="login.html">
+          <section class="button">
+            <h3>
+              Déconnexion
+            </h3>
+          </section>
+        </a>
         </section>
       </section>
     </section>
     <main>
-      <section class="body-top">
-      </section>
+      <section class="body-top"></section>
       <section class="frame">
         <div class="grid" id="memory">
           <!--<div class=card> <img class="shown" id="card_${a - 1}" src="" alt="" sizes="(max-width:768px) 75px, 115px" srcset="assets/images/${tab[a]}.jpg 480w, assets/images/${tab[a]}.jpg 800w"/></div> -->
         </div>
-        </section>
+      </section>
     </main>
   </body>
 </html>

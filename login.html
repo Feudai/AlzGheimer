@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Se connecter - AlzGheimer</title>
     <link rel="stylesheet" href="/Git_M050/AlzGheimer/css/style.css" />
-    <link rel="shortcut icon" href="assets/images/thithi.jpg" />
+    <link rel="shortcut icon" href="assets/icon/icon.png" />
   </head>
   <body>
     <section class="banner">
@@ -14,22 +14,23 @@
         <i>Improve your Memory &trade; </i>
       </header>
       <section class="navbar">
+        <section class="left">
         <a href="index.html">
           <section class="button">
             <h3>Accueil</h3>
           </section>
         </a>
-        <a href="register.html">
+        <a id="register" href="register.html" >
           <section class="button">
             <h3>Créer un compte</h3>
           </section>
         </a>
-        <a href="login.html">
+        <a id="login" href="login.html">
           <section class="button">
             <h3>Se connecter</h3>
           </section>
         </a>
-        <a href="profile.html">
+        <a id="profile" href="profile.html">
           <section class="button">
             <h3>Profil</h3>
           </section>
@@ -39,6 +40,16 @@
             <h3>Jouer</h3>
           </section>
         </a>
+        </section>
+    <section class="right">
+        <a id="disconnect" href="login.html">
+          <section class="button">
+            <h3>
+              Déconnexion
+            </h3>
+          </section>
+        </a>
+        </section>
       </section>
     </section>
     <main>
@@ -49,13 +60,16 @@
           <input type="email" id="email" />
           <label for="password">Mot de Passe</label>
           <input type="password" id="password" />
+          <button>
+            <i>Se connecter</i>
+          </button>
         </form>
-        <button>
-          <i>Se connecter</i>
-        </button>
+        <section>
+          <h4 id="error" class="good">Wrong email or password. Try again.</h4>
+        </section>
       </section>
     </main>
 
-    <script src="js/app.js"></script>
+    <script src="js/userLogin.js" type="module"></script>
   </body>
 </html>

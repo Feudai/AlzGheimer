@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Créer un compte - AlzGheimer</title>
     <link rel="stylesheet" href="/Git_M050/AlzGheimer/css/style.css" />
-    <link rel="shortcut icon" href="assets/images/thithi.jpg" />
+    <link rel="shortcut icon" href="assets/icon/icon.png" />
   </head>
   <body>
     <section class="banner">
@@ -14,30 +14,41 @@
         <i>Improve your Memory &trade; </i>
       </header>
       <section class="navbar">
-        <section class="button">
-          <a href="index.html">
+         <section class="left">
+        <a href="index.html">
+          <section class="button">
             <h3>Accueil</h3>
-          </a>
-        </section>
-        <section class="button">
-          <a href="register.html">
+          </section>
+        </a>
+        <a id="register" href="register.html" >
+          <section class="button">
             <h3>Créer un compte</h3>
-          </a>
-        </section>
-        <section class="button">
-          <a href="login.html">
+          </section>
+        </a>
+        <a id="login" href="login.html">
+          <section class="button">
             <h3>Se connecter</h3>
-          </a>
-        </section>
-        <section class="button">
-          <a href="profile.html">
+          </section>
+        </a>
+        <a id="profile" href="profile.html">
+          <section class="button">
             <h3>Profil</h3>
-          </a>
-        </section>
-        <section class="button">
-          <a href="game.html">
+          </section>
+        </a>
+        <a href="game.html">
+          <section class="button">
             <h3>Jouer</h3>
-          </a>
+          </section>
+        </a>
+        </section>
+       <section class="right">
+        <a id="disconnect" href="login.html">
+          <section class="button">
+            <h3>
+              Déconnexion
+            </h3>
+          </section>
+        </a>
         </section>
       </section>
     </section>
@@ -46,16 +57,22 @@
         <h2>Inscription</h2>
         <form id="signup-form" method="post">
           <label for="email">Email</label>
-          <input type="email" id="email" />
-          <label for="username">Pseudo</label>
-          <input type="text" id="username" />
+          <input type="text" id="email" />
+          <label for="pseudo">Pseudo</label>
+          <input type="text" id="pseudo" />
           <label for="password">Mot de Passe</label>
           <input type="password" id="password" />
+          <button>S'inscrire</button>
         </form>
-        <button>S'inscrire</button>
+        <section>
+          <h4 id="emailError" class="good">Wrong Email</h4>
+          <h4 id="pseudoError" class="good">Wrong Pseudo</h4>
+          <h4 id="passwordError" class="good">Wrong Mot de Passe</h4>
+          <h4 id="pseudoTaken" class="good">Pseudo already taken :(</h4>
+        </section>
       </section>
     </main>
 
-    <script src="js/app.js"></script>
+    <script src="js/userSetup.js" type="module"></script>
   </body>
 </html>

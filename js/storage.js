@@ -1,4 +1,3 @@
-//import { maxCases, showImage } from "./memory.js";
 
 function getDatas(key){
     return JSON.parse(localStorage.getItem(key)) || [];
@@ -9,11 +8,18 @@ function getDatas(key){
 function setData(key,data){
     const oldData = getDatas(key);
 
+    if(data !=null)
     oldData.push(data);
 
     localStorage.setItem(key,JSON.stringify(oldData));
 
 return oldData;
+}
+
+function removeData(key){
+    const dataToErase = getDatas(key);
+    localStorage.setItem(key, JSON.stringify(''));
+    return dataToErase;
 }
 
 // function checkImageExists(imagePath) {
@@ -48,4 +54,4 @@ return oldData;
 //   }
 // };
 
-export {getDatas,setData,/*checkImageExists,checkAllImages*/};
+export {getDatas,setData,removeData};

@@ -50,16 +50,13 @@ h1 {
   text-shadow: 4px 4px 2px var(--secondary-color);
 }
 
-/* input{
-
-} */
 
 .description {
   border: 5px groove var(--secondary-color);
   border-radius: 15px;
-  font-size: clamp(0.5rem, 5vw, 1.5rem);
-  padding: 2vw;
-  margin: 4vw;
+  font-size: clamp(0.25rem, 52.5vw, 1rem);
+  padding: 1vw;
+  margin: 2vw;
   text-align: center;
   max-width: 1600px;
   background-color: white;
@@ -73,17 +70,15 @@ h1 {
   justify-content: flex-start;
   box-shadow: 5px 4px 6px rgba(0, 0, 0, 0.1);
   transition: transform 1s cubic-bezier(0.5, 1, 0.5, 1);
-
 }
 
-
-.banner.transition{
-   background-color: var(--primary-color);
+.banner.transition {
+  background-color: var(--primary-color);
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   box-shadow: 5px 4px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 1s cubic-bezier(0.7, 1.5, 0.22, 1) 0.3s;   
+  transition: transform 1s cubic-bezier(0.7, 1.5, 0.22, 1) 0.3s;
   transform: translateY(-305px);
 }
 
@@ -105,6 +100,7 @@ a {
   border-radius: 5px;
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   box-shadow: 1px 3px 5px #333333a4;
 }
 
@@ -159,20 +155,72 @@ a {
 .grid {
   display: grid;
   grid-template-rows: repeat(6, minmax(120px, 1fr));
-  grid-template-columns: repeat(6, minmax(120px, 0.70fr));
-  gap : 20px;
-  padding: 70px;
+  grid-template-columns: repeat(6, minmax(120px, 0.7fr));
+  gap: 20px;
+  padding: 40px;
   margin-left: 200px;
   margin-right: 200px;
 }
 .frame {
   display: flex;
   justify-content: space-around;
-      transition: transform 1s cubic-bezier(0.5, 1, 0.5, 1);
+  transition: transform 1s cubic-bezier(0.5, 1, 0.5, 1);
 }
 .frame.transition {
   display: flex;
   justify-content: space-around;
-    transition: transform 1s cubic-bezier(0.7, 1.5, 0.22, 1) 0.3s;   
-  transform: translateY(-305px);
+  transition: transform 1s cubic-bezier(0.7, 1.5, 0.22, 1) 0.3s;
+  transform: translateY(-310px);
+}
+
+.shown {
+  transform-style: preserve-3d;
+  transition: transform 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: rotateY(0deg);
+}
+
+.hidden {
+  transform-style: preserve-3d;
+  transition: transform 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: rotateY(180deg);
+}
+
+h4{
+  color: rgb(185, 24, 24);
+transition:font-size 1s cubic-bezier(0.4, 0, 0.2, 1);
+    transition:opacity 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.good{
+      font-size: 0px;
+      opacity:0.5;
+        
+}
+
+.wrong{
+  font-size:clamp(0.5rem, 0.75vw, 1.5rem);
+  opacity:1;
+
+}
+
+#disconnect{
+  margin-left: 57vw;
+}
+
+.obsolete
+{
+    display: none !important;
+}
+
+.left{
+  display: flex;
+  flex-direction: row;
+}
+.right{
+  display: flex;
+  flex-direction: row;
+}
+
+#presentation{
+  max-width:50%;
 }

@@ -1,67 +1,113 @@
+import { displayCards, hideCards, randomCards } from "./memorySetup.js";
+import { hideBtn } from "./profile.js";
 
-import { displayCards, hideCards, randomCards } from "./memory_setup.js";
+hideBtn();
 
 let nb_cards = 24;
 let cards = [];
 let shown = new Array(nb_cards);
 let flipped = [];
 let times_shuffled = 100;
+let score = 0;
+let enableClick = true;
 
-for(let a=0;a<nb_cards;a++)
-shown = hideCards(a,shown);
+//filling hidden cards
+for (let a = 0; a < nb_cards; a++) shown = hideCards(a, shown);
 
+//Shuffling
 cards = randomCards(cards, nb_cards, times_shuffled);
 
-displayCards(cards, nb_cards, shown,true);
+//first display
+displayCards(cards, nb_cards, shown, true);
+
+clickCards();
+
+spaceReset();
+
+//Fonctions
 
 //écoute clicks
-const $images = document.querySelectorAll('.grid div');
+function clickCards() {
+  const $images = document.querySelectorAll(".grid div");
+  $images.forEach((img, index) => {
+    img.addEventListener("click", () => {
+      if (enableClick) {
+        shown = flip(index, shown);
+        displayCards(cards, nb_cards, shown, false);
+      }
+    });
+  });
+}
 
-$images.forEach((img,index) => {
-    img.addEventListener('click',()=>{
-      shown = flip(index ,shown);
+//Fonction de flip des cartes
 
-       displayCards(cards, nb_cards, shown,false);
-       
-    })
-});
-
-
-
-
-function flip(index,tab){
-  
+function flip(index, tab) {
   //Pas plus que 2 cartes retournées
   if (!tab[index] && flipped.length < 2) {
     tab[index] = true;
-    flipped.push(index); //+1 because of the card 0 being default pic
+    flipped.push(index + 1); //+1 because of the card 0 being default pic
   }
 
   //si 2 cartes retournées
-  if(flipped.length==2){
-    checkSame(flipped,tab);
+  if (flipped.length == 2) {
+    tab[index] = true;
+    //On regarde si elles sont idedntiques
+    enableClick = false;
+    checkSame(flipped, tab);
     flipped = [];
-  }
 
+    //Incrementation du nombre de tours
+    score++;
+  }
   return tab;
 }
 
+//Reset par le barre espace
+function spaceReset() {
+  document.addEventListener("keypress", (e) => {
+    if (e.code === "Space") {
+      //empeche le defilement
+      e.preventDefault();
+      resetGame();
+    }
+  });
+}
+
 //vérification de l'identicité des cartes
-function checkSame(tab,tab_2){
-  if(cards[tab[0]]===cards[tab[1]]){
-    console.log("gagné " + cards[tab[0]] + "  " + cards[tab[1]]);
-    
+function checkSame(tab, tab_2) {
+  if (cards[tab[0]] === cards[tab[1]]) {
+    //Decrementation = meilleur score final
+    score--;
+    checkWin();
+    enableClick = true;
+  } else {
+    //Timer pour affichage des cartes synchronise avec la rotation
+    setTimeout(() => {
+      hideCards(tab[0] - 1, tab_2);
+      hideCards(tab[1] - 1, tab_2);
+      displayCards(cards, nb_cards, shown, false);
+      enableClick = true;
+    }, 1000);
   }
-  else {//tab_2[tab[0]]=false;
-    //tab_2[tab[1 ]] = false;
-    hideCards(tab[0],tab_2);
-    hideCards(tab[1], tab_2);
+}
+
+function resetGame() {
+  score = 0;
+  shown.fill(false);
+  cards = randomCards(cards, nb_cards, times_shuffled);
+  displayCards(cards, nb_cards, shown, true);
+  clickCards();
+}
+
+function checkWin() {
+  if (!shown.includes(false)) {
+    let final_score = 100 - score*3;
+    if(final_score<0)final_score=0;
+    console.log("gagné ! Score: " + final_score);
   }
-  
 }
 
 //transition fenetre de jeu
-
 
 document.addEventListener("DOMContentLoaded", () => {
   const $banner = document.querySelector(".banner");
@@ -74,6 +120,7 @@ document.addEventListener("DOMContentLoaded", () => {
     link.addEventListener("click", (e) => {
       e.preventDefault();
 
+      //Condition de non sortie de la page game vers la page game
       if (
         !document.URL.includes("game.html") ||
         !link.href.includes("game.html")
@@ -95,8 +142,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
-
-
 
 //Tests sur des img aléatoires d'un stockage online
 
