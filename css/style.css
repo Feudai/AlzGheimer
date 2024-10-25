@@ -50,6 +50,10 @@ h1 {
   text-shadow: 4px 4px 2px var(--secondary-color);
 }
 
+.loading *{
+  transition: display 1s cubic-bezier(0.5, 1, 0.5, 1);
+  display: none !important;
+}
 
 .description {
   border: 5px groove var(--secondary-color);
@@ -92,6 +96,11 @@ a {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.body-game{
+  display: flex;
+  flex-direction: row;
 }
 
 .navbar {
@@ -159,7 +168,7 @@ a {
   gap: 20px;
   padding: 40px;
   margin-left: 200px;
-  margin-right: 200px;
+  margin-right: 50px;
 }
 .frame {
   display: flex;
@@ -189,6 +198,80 @@ h4{
   color: rgb(185, 24, 24);
 transition:font-size 1s cubic-bezier(0.4, 0, 0.2, 1);
     transition:opacity 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+h2{
+  padding: 5vw;
+}
+
+#submit{
+  padding: 4px;
+  margin: 5px;
+  margin-left: 5vw;
+    font-family: "Agdasima", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: clamp(0.5rem, 2vw, 1.5rem);
+}
+
+#signup-form{
+ font-family: "Agdasima", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: clamp(0.5rem, 2vw, 1.5rem);
+  padding:10px;
+}
+
+#login-form{
+ font-family: "Agdasima", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: clamp(0.5rem, 2vw, 1.5rem);
+
+}
+
+#bonjour{
+  padding:2vw;
+  font-family: "Agdasima", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: clamp(1rem, 3vw, 2rem);
+}
+#emailDisplay{
+    padding:2vw;
+    font-family: "Agdasima", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: clamp(1rem, 3vw, 2rem);
+}
+
+#choix{
+    padding:2vw;
+    font-family: "Agdasima", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: clamp(1rem, 3vw, 2rem);
+}
+
+#grille{
+  padding: 10px;
+  margin:2vw;
+    font-family: "Agdasima", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: clamp(1rem, 3vw, 2rem);
+}
+
+.text-score{
+  display: flex;
+  align-items: center;
+
+}
+.score{
+    font-family: "Agdasima", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: clamp(1.5rem, 4vw, 3rem);
 }
 
 .good{
