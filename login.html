@@ -6,6 +6,7 @@
     <title>Se connecter - AlzGheimer</title>
     <link rel="stylesheet" href="/Git_M050/AlzGheimer/css/style.css" />
     <link rel="shortcut icon" href="assets/icon/icon.png" />
+    
   </head>
   <body>
     <section class="banner">
@@ -13,6 +14,7 @@
         <h1 class="agdasima-bold">AlzGheimer</h1>
         <i>Improve your Memory &trade; </i>
       </header>
+      <section id="load" class="loading">
       <section class="navbar">
         <section class="left">
         <a href="index.html">
@@ -51,6 +53,7 @@
         </a>
         </section>
       </section>
+      </section>
     </section>
     <main>
       <section class="body-top">
@@ -60,8 +63,8 @@
           <input type="email" id="email" />
           <label for="password">Mot de Passe</label>
           <input type="password" id="password" />
-          <button>
-            <i>Se connecter</i>
+          <button id="submit">
+            Se connecter
           </button>
         </form>
         <section>
@@ -70,6 +73,6 @@
       </section>
     </main>
 
-    <script src="js/userLogin.js" type="module"></script>
+    <script defer src="js/userLogin.js" type="module"></script>
   </body>
 </html>

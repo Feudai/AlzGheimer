@@ -6,6 +6,7 @@
     <title>Créer un compte - AlzGheimer</title>
     <link rel="stylesheet" href="/Git_M050/AlzGheimer/css/style.css" />
     <link rel="shortcut icon" href="assets/icon/icon.png" />
+    
   </head>
   <body>
     <section class="banner">
@@ -13,42 +14,42 @@
         <h1 class="agdasima-bold">AlzGheimer</h1>
         <i>Improve your Memory &trade; </i>
       </header>
-      <section class="navbar">
-         <section class="left">
-        <a href="index.html">
-          <section class="button">
-            <h3>Accueil</h3>
+      <section id="load" class="loading">
+        <section class="navbar">
+          <section class="left">
+            <a href="index.html">
+              <section class="button">
+                <h3>Accueil</h3>
+              </section>
+            </a>
+            <a id="register" href="register.html">
+              <section class="button">
+                <h3>Créer un compte</h3>
+              </section>
+            </a>
+            <a id="login" href="login.html">
+              <section class="button">
+                <h3>Se connecter</h3>
+              </section>
+            </a>
+            <a id="profile" href="profile.html">
+              <section class="button">
+                <h3>Profil</h3>
+              </section>
+            </a>
+            <a href="game.html">
+              <section class="button">
+                <h3>Jouer</h3>
+              </section>
+            </a>
           </section>
-        </a>
-        <a id="register" href="register.html" >
-          <section class="button">
-            <h3>Créer un compte</h3>
+          <section class="right">
+            <a id="disconnect" href="login.html">
+              <section class="button">
+                <h3>Déconnexion</h3>
+              </section>
+            </a>
           </section>
-        </a>
-        <a id="login" href="login.html">
-          <section class="button">
-            <h3>Se connecter</h3>
-          </section>
-        </a>
-        <a id="profile" href="profile.html">
-          <section class="button">
-            <h3>Profil</h3>
-          </section>
-        </a>
-        <a href="game.html">
-          <section class="button">
-            <h3>Jouer</h3>
-          </section>
-        </a>
-        </section>
-       <section class="right">
-        <a id="disconnect" href="login.html">
-          <section class="button">
-            <h3>
-              Déconnexion
-            </h3>
-          </section>
-        </a>
         </section>
       </section>
     </section>
@@ -62,7 +63,7 @@
           <input type="text" id="pseudo" />
           <label for="password">Mot de Passe</label>
           <input type="password" id="password" />
-          <button>S'inscrire</button>
+          <button id="submit">S'inscrire</button>
         </form>
         <section>
           <h4 id="emailError" class="good">Wrong Email</h4>
@@ -73,6 +74,6 @@
       </section>
     </main>
 
-    <script src="js/userSetup.js" type="module"></script>
+    <script defer src="js/userSetup.js" type="module"></script>
   </body>
 </html>

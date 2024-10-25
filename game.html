@@ -6,7 +6,6 @@
     <title>AlzGheimer</title>
     <link rel="stylesheet" href="/Git_M050/AlzGheimer/css/style.css" />
     <link rel="shortcut icon" href="assets/icon/icon.png" />
-    <script type="module" src="js/memory.js" defer></script>
   </head>
   <body>
     <section class="banner">
@@ -14,52 +13,55 @@
         <h1 class="agdasima-bold">AlzGheimer</h1>
         <i>Improve your Memory &trade; </i>
       </header>
-      <section class="navbar">
-         <section class="left">
-        <a href="index.html">
-          <section class="button">
-            <h3>Accueil</h3>
+      <section id="load" class="loading">
+        <section class="navbar">
+          <section class="left">
+            <a href="index.html">
+              <section class="button">
+                <h3>Accueil</h3>
+              </section>
+            </a>
+            <a id="register" href="register.html">
+              <section class="button">
+                <h3>Créer un compte</h3>
+              </section>
+            </a>
+            <a id="login" href="login.html">
+              <section class="button">
+                <h3>Se connecter</h3>
+              </section>
+            </a>
+            <a id="profile" href="profile.html">
+              <section class="button">
+                <h3>Profil</h3>
+              </section>
+            </a>
+            <a href="game.html">
+              <section class="button">
+                <h3>Jouer</h3>
+              </section>
+            </a>
           </section>
-        </a>
-        <a id="register" href="register.html" >
-          <section class="button">
-            <h3>Créer un compte</h3>
+          <section class="right">
+            <a id="disconnect" href="login.html">
+              <section class="button">
+                <h3>Déconnexion</h3>
+              </section>
+            </a>
           </section>
-        </a>
-        <a id="login" href="login.html">
-          <section class="button">
-            <h3>Se connecter</h3>
-          </section>
-        </a>
-        <a id="profile" href="profile.html">
-          <section class="button">
-            <h3>Profil</h3>
-          </section>
-        </a>
-        <a href="game.html">
-          <section class="button">
-            <h3>Jouer</h3>
-          </section>
-        </a>
-        </section>
-       <section class="right">
-        <a id="disconnect" href="login.html">
-          <section class="button">
-            <h3>
-              Déconnexion
-            </h3>
-          </section>
-        </a>
         </section>
       </section>
     </section>
-    <main>
-      <section class="body-top"></section>
+    <section class="body-game">
       <section class="frame">
         <div class="grid" id="memory">
           <!--<div class=card> <img class="shown" id="card_${a - 1}" src="" alt="" sizes="(max-width:768px) 75px, 115px" srcset="assets/images/${tab[a]}.jpg 480w, assets/images/${tab[a]}.jpg 800w"/></div> -->
         </div>
+        <section class="text-score">
+          <h5 class="score">Sacre d'Sacre</h5>
+        </section>
       </section>
-    </main>
+    </section>
+    <script type="module" src="js/memory.js" defer></script>
   </body>
 </html>
