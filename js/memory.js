@@ -111,7 +111,6 @@ function resetGame() {
 function checkWin() {
       const $score = document.querySelector(".score");
       $score.innerHTML = "Sacré d'sacré !";
-      console.log(("oui"));
       
   if (!shown.includes(false)) {
     let final_score = 100 - score * 3;
@@ -121,13 +120,14 @@ function checkWin() {
     
 
     const user = getDatas("user");
-    const data = getDatas("users");
+    let data = getDatas("users");
     let entry = {};
 
-    if (data[0] != undefined && user[0] != undefined) {
-      data.filter((obj) => obj.email === user.email);
+    if (data[0] != undefined && user[0] != undefined) {      
+      data = data.filter((obj) => obj.email === user[0].email);
     }
-    const past = getDatas("score");
+    
+    let past = getDatas("score");
     removeData("score");
     if (past[0] == undefined) {
       entry.pseudo = data[0].pseudo;
@@ -135,7 +135,7 @@ function checkWin() {
       entry.score.push(final_score);
       setData("score",entry);
     } else {
-      past.filter((obj) => obj.pseudo === data[0].pseudo);
+     past.filter((obj) => obj.pseudo === data[0].pseudo);
       const pseudoTemp = past[0].pseudo;
       const scoreTemp  = past[0].score; //tab
       scoreTemp.push(final_score);
