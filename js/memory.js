@@ -1,7 +1,7 @@
-import { displayCards, hideCards, randomCards } from "./memorySetup.js";
+import { displayCards, hideCards, randomCards, chooseGrid } from "./memorySetup.js";
 import { hideBtn } from "./display.js";
 import { disconnect } from "./profile.js";
-import { getDatas, setData } from "./storage.js";
+import { getDatas, removeData, setData } from "./storage.js";
 
 let nb_cards = 24;
 let cards = [];
@@ -11,31 +11,8 @@ let times_shuffled = 100;
 let score = 0;
 let enableClick = true;
 
-const user = getDatas("user");
-const data = getDatas("users");
 
-if (data[0] != undefined && user[0] != undefined) {
-  data.filter((obj) => obj.email === user.email);
-
-  const grid = data[0].grille;
-  const $grille = document.getElementById("memory");
-
-  if (grid == "6x4") {
-    nb_cards = 24;
-    $grille.className = "grid-6x4";
-  } else if (grid == "5x4") {
-    nb_cards = 20;
-    $grille.className = "grid-5x4";
-    console.log($grille);
-  } else if (grid == "4x4") {
-    nb_cards = 16;
-    $grille.className = "grid-4x4";
-  } else {
-    nb_cards = 12;
-    $grille.className = "grid-4x3";
-  }
-}
-
+nb_cards =chooseGrid(nb_cards);
 //filling hidden cards
 for (let a = 0; a < nb_cards; a++) shown = hideCards(a, shown);
 
@@ -49,8 +26,6 @@ clickCards();
 
 spaceReset();
 
-const $score = document.getElementsByClassName("score");
-$score.innerText = "Sacre d'sacre !";
 
 //Fonctions
 
@@ -125,8 +100,8 @@ function checkSame(tab, tab_2) {
 }
 
 function resetGame() {
+  for (let a = 0; a < nb_cards; a++) shown = hideCards(a, shown);
   score = 0;
-  shown.fill(false);
   cards = [];
   cards = randomCards(cards, nb_cards, times_shuffled);
   displayCards(cards, nb_cards, shown, true);
@@ -134,11 +109,16 @@ function resetGame() {
 }
 
 function checkWin() {
+      const $score = document.querySelector(".score");
+      $score.innerHTML = "Sacré d'sacré !";
+      console.log(("oui"));
+      
   if (!shown.includes(false)) {
     let final_score = 100 - score * 3;
     if (final_score < 0) final_score = 0;
     console.log("gagné ! Score: " + final_score);
-    $score.innerText = "Score : " + final_score;
+    $score.innerHTML = "Gagné ! Score : " + final_score;
+    
 
     const user = getDatas("user");
     const data = getDatas("users");
@@ -148,16 +128,23 @@ function checkWin() {
       data.filter((obj) => obj.email === user.email);
     }
     const past = getDatas("score");
+    removeData("score");
     if (past[0] == undefined) {
       entry.pseudo = data[0].pseudo;
-      entry.score = [];
+      entry.score=[]
       entry.score.push(final_score);
+      setData("score",entry);
     } else {
       past.filter((obj) => obj.pseudo === data[0].pseudo);
-
-      past.push(final_score);
+      const pseudoTemp = past[0].pseudo;
+      const scoreTemp  = past[0].score; //tab
+      scoreTemp.push(final_score);
+      const obj = {};
+      obj.pseudo=pseudoTemp;
+      obj.score = scoreTemp;
+      setData("score", obj);
     }
-    setData("score", past);
+    
   }
 }
 

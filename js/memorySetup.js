@@ -48,6 +48,34 @@ function randomCards(tab, nb, shuffles) {
   return tab;
 }
 
+function chooseGrid(nb) {
+  const user = getDatas("user");
+  const data = getDatas("users");
+
+  if (data[0] != undefined && user[0] != undefined) {
+    data.filter((obj) => obj.email === user.email);
+
+    const grid = data[0].grille;
+    const $grille = document.getElementById("memory");
+
+    if (grid == "6x4") {
+      nb = 24;
+      $grille.className = "grid-6x4";
+    } else if (grid == "5x4") {
+      nb = 20;
+      $grille.className = "grid-5x4";
+      console.log($grille);
+    } else if (grid == "4x4") {
+      nb = 16;
+      $grille.className = "grid-4x4";
+    } else {
+      nb = 12;
+      $grille.className = "grid-4x3";
+    }
+  }
+  return nb;
+}
+
 //ainsi que des balises html img
 function displayCards(tab, nb, tab_2, setup) {
   if (setup) {
@@ -66,20 +94,20 @@ function displayCards(tab, nb, tab_2, setup) {
 
     const grid = data[0].grille;
     if (grid == "6x4") {
-      size1 = 325;
-      size2 = 725;
+      size1 = 400;
+      size2 = 800;
     }
     if (grid == "5x4") {
-      size1 = 300;
-      size2 = 700;
+      size1 = 400;
+      size2 = 800;
     }
     if (grid == "4x4") {
-      size1 = 300;
-      size2 = 700;
+      size1 = 350;
+      size2 = 750;
     }
     if (grid == "4x3") {
-      size1 = 250;
-      size2 = 650;
+      size1 = 275;
+      size2 = 675;
     }
   }
   for (let a = 1; a <= nb; a++) {
@@ -132,4 +160,4 @@ function displayCards(tab, nb, tab_2, setup) {
   }
 }
 
-export { randomCards, displayCards, hideCards };
+export { randomCards, displayCards, hideCards, chooseGrid };

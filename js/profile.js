@@ -1,43 +1,59 @@
 import { getDatas, removeData, setData } from "./storage.js";
 import { hideBtn } from "./display.js";
 
-
 document.addEventListener("DOMContentLoaded", () => {
   hideBtn();
 
-    document.getElementById("load").classList.remove("loading");
+  document.getElementById("load").classList.remove("loading");
 
-    if(isCurrentPage('profile.html'))greet();
+  if (isCurrentPage("profile.html")) {
+    greet();
 
-    
-  const data = getDatas("score");
+    const user = getDatas("user");
+    const users = getDatas("users");
+    const data = getDatas("score");
 
-const $scores = document.getElementById("scores");
-$scores.innerText(
-  "Scores : " +
-    data[1] +
-    ", " +
-    data[2] +
-    ", " +
-    data[3] +
-    ", " +
-    data[4] +
-    ", " +
-    data[5] +
-    ", " +
-    data[6] +
-    ", " +
-    data[7] +
-    ", " +
-    data[8] +
-    ", " +
-    data[9] +
-    ", "
-);
+    if (users[0] != undefined && user[0] != undefined)
+      users.filter((obj) => obj.email === user.email);
 
- });
+    if (data[0] != undefined)
+      data.filter((obj) => obj.pseudo === users[0].pseudo);
 
+    const $scores = document.getElementById("scores");
+    const scores = data[0].score;
 
+    $scores.innerText =
+      "Scores : " +
+      (scores[scores.length] != undefined
+        ? scores[scores.length] + " | "
+        : "") +
+      (scores[scores.length - 1] != undefined
+        ? scores[scores.length - 1] + " | "
+        : "") +
+      (scores[scores.length - 2] != undefined
+        ? scores[scores.length - 2] + " | "
+        : "") +
+      (scores[scores.length - 3] != undefined
+        ? scores[scores.length - 3] + " | "
+        : "") +
+      (scores[scores.length - 4] != undefined
+        ? scores[scores.length - 4] + " | "
+        : "") +
+      (scores[scores.length - 5] != undefined
+        ? scores[scores.length - 5] + " | "
+        : "") +
+      (scores[scores.length - 6] != undefined
+        ? scores[scores.length - 6] + " | "
+        : "") +
+      (scores[scores.length - 7] != undefined
+        ? scores[scores.length - 7] + " | "
+        : "") +
+      (scores[scores.length - 8] != undefined
+        ? scores[scores.length - 8] + " | "
+        : "") +
+      (scores[scores.length - 9] != undefined ? scores[scores.length - 9] : "");
+  }
+});
 
 const $disco_button = document.getElementById("disconnect");
 
@@ -57,8 +73,7 @@ function connect(usr, link) {
 
 function disconnect(redirect) {
   removeData("user");
-  if(redirect)
-    window.location.href = "login.html";
+  if (redirect) window.location.href = "login.html";
 }
 
 function greet() {
@@ -73,7 +88,7 @@ function greet() {
 
     const gridVal = data[0].grille;
     const $grid = document.getElementById("grille");
-    if(gridVal!=null)$grid.value=gridVal;
+    if (gridVal != null) $grid.value = gridVal;
 
     if ($grid != null) {
       const choix = $grid.value;
@@ -86,7 +101,6 @@ function greet() {
       });
     }
 
-
     const $greeting = document.getElementById("bonjour");
 
     $greeting.innerText = "Salam mon khoya " + pseudo + " !";
@@ -96,6 +110,5 @@ function greet() {
       "Ton méga email c'est " + email + " et faut avouer que ça claque ! UwU";
   }
 }
-
 
 export { connect, disconnect, hideBtn };
