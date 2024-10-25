@@ -94,7 +94,24 @@ a {
 .body-top {
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+.body-top-profile {
+    display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.body-left {
+  display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
+}
+.body-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
   align-items: center;
 }
 
@@ -312,6 +329,51 @@ h2{
   font-weight: 400;
   font-style: normal;
   font-size: clamp(1rem, 3vw, 2rem);
+}
+
+#best{
+  margin-top: 2vw;
+  margin-bottom: 2vw;
+       font-family: "Agdasima", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: clamp(1rem, 3vw, 2rem);
+}
+
+#bestScore{
+       font-family: "Agdasima", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: clamp(1rem, 3vw, 2rem);
+    margin-bottom: 2vw;
+}
+#bestScore_2{
+       font-family: "Agdasima", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: clamp(1rem, 3vw, 2rem);
+    margin-bottom: 2vw;
+}
+#bestScore_3{
+       font-family: "Agdasima", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: clamp(1rem, 3vw, 2rem);
+    margin-bottom: 2vw;
+}
+#bestScore_4{
+       font-family: "Agdasima", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: clamp(1rem, 3vw, 2rem);
+    margin-bottom: 2vw;
+}
+#bestScore_5{
+       font-family: "Agdasima", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: clamp(1rem, 3vw, 2rem);
+    margin-bottom: 2vw;
 }
 
 .good{
