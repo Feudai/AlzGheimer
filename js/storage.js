@@ -5,10 +5,14 @@ function getDatas(key){
 }
 
 
-function setData(key,data){
-    const oldData = getDatas(key);
+function setData(key,data,newUserEntry){
+    let oldData = getDatas(key);
 
-    if(data !=null)
+    if(newUserEntry){
+oldData[0].grille = data;
+    }
+
+   else if(data !=null)
     oldData.push(data);
 
     localStorage.setItem(key,JSON.stringify(oldData));

@@ -2,13 +2,18 @@ import { passwordValidator } from "./passwordValidator.js";
 import { emailValidator } from "./emailValidator.js";
 import { pseudoValidator } from "./pseudoValidator.js";
 import { getDatas, setData } from "./storage.js";
-import { hideBtn } from "./profile.js";
+import { hideBtn } from "./display.js";
+
+document.addEventListener("DOMContentLoaded", () => {
+  hideBtn();
+  document.getElementById("load").classList.remove("loading");
+});
 
 window.onload = init;
 
 function init() {
 
-  hideBtn();
+
   //target el
   const $signupForm = document.getElementById("signup-form");
 
@@ -75,6 +80,7 @@ function init() {
 
     //null user check goes in setData function
     setData("users", user);
+    if(user!=null)
     window.location.href = "login.html";
 
     //reset the event

@@ -8,24 +8,41 @@ function randomCards(tab, nb, shuffles) {
   //Carte face cachée universelle
   tab.push(0);
 
+  let rand=[];
+  //selection aleatoire des images   //18 images dispo
+  for (let a = 1; a <= 18; a++) {
+    rand.push(a);
+  }
+
+  for (let s = 0; s < shuffles; s++) {
+    rand.forEach((element, index) => {
+      if (index != 0) {
+        let random = Math.floor(Math.random() * 17) + 1;
+        let temp = element;
+        rand[index] = rand[random];
+        rand[random] = temp;
+      }
+    });
+  }
+
   //boucle de remplissage du tableau
-  for (let a = 1; a <= nb / 2; a++) {
-    tab.push(a);
-    tab.push(a);
+  for (let a = 0; a <nb / 2; a++) {
+    tab.push(rand[a]);
+    tab.push(rand[a]);
   }
 
   //shuffle du tableau x (shuffle) fois
 
-  for (let s = 0; s < shuffles; s++) {
-    tab.forEach((element, index) => {
-      if (index != 0) {
-        let random = Math.floor(Math.random() * nb) + 1;
-        let temp = element;
-        tab[index] = tab[random];
-        tab[random] = temp;
-      }
-    });
-  }
+  // for (let s = 0; s < shuffles; s++) {
+  //   tab.forEach((element, index) => {
+  //     if (index != 0) {
+  //       let random = Math.floor(Math.random() * nb) + 1;
+  //       let temp = element;
+  //       tab[index] = tab[random];
+  //       tab[random] = temp;
+  //     }
+  //   });
+  // }
   return tab;
 }
 
@@ -62,7 +79,7 @@ function displayCards(tab, nb, tab_2, setup) {
         setTimeout(() => {
           $card.setAttribute(
             "srcset",
-            `assets/images/${tab[a]}.jpg 480w, assets/images/${tab[a]}.jpg 800w")`
+            `assets/images/${tab[a]}.jpg 375w, assets/images/${tab[a]}.jpg 775w")`
           );
 
           //Pour le reload des images updatees
@@ -76,7 +93,7 @@ function displayCards(tab, nb, tab_2, setup) {
         setTimeout(() => {
           $card.setAttribute(
             "srcset",
-            `assets/images/${tab[0]}.jpg 480w, assets/images/${tab[0]}.jpg 800w")`
+            `assets/images/${tab[0]}.jpg 375w, assets/images/${tab[0]}.jpg 775w")`
           );
           const currentSrc = $card.srcset;
           $card.srcset = "";

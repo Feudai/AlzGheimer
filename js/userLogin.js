@@ -1,13 +1,17 @@
 import { getDatas } from "./storage.js";
-import { connect, disconnect, hideBtn } from "./profile.js";
+import { connect, disconnect} from "./profile.js";
+import { hideBtn } from "./display.js";
 
 
 window.onload = init;
 
 function init() {
-    disconnect();
+    disconnect(false);
 
-    hideBtn();
+document.addEventListener("DOMContentLoaded", () => {
+  hideBtn();
+    document.getElementById("load").classList.remove("loading");
+});
   //target el
   const $signupForm = document.getElementById("login-form");
 
@@ -36,7 +40,7 @@ function init() {
               (obj) => obj.password === input.value && obj.email === user.email
             )
           ){
-          console.log("oui");
+          
             connect(user, "profile.html");
           }
           else error = true;

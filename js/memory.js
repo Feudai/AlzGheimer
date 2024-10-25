@@ -1,7 +1,8 @@
 import { displayCards, hideCards, randomCards } from "./memorySetup.js";
-import { hideBtn } from "./profile.js";
+import { hideBtn } from "./display.js";
+import {  disconnect} from "./profile.js";
+import { getDatas, setData } from "./storage.js";
 
-hideBtn();
 
 let nb_cards = 24;
 let cards = [];
@@ -23,6 +24,9 @@ displayCards(cards, nb_cards, shown, true);
 clickCards();
 
 spaceReset();
+
+const $score = document.getElementsByClassName("score");
+$score.innerText="Sacre d'sacre !";
 
 //Fonctions
 
@@ -94,6 +98,7 @@ function checkSame(tab, tab_2) {
 function resetGame() {
   score = 0;
   shown.fill(false);
+  cards=[];
   cards = randomCards(cards, nb_cards, times_shuffled);
   displayCards(cards, nb_cards, shown, true);
   clickCards();
@@ -104,19 +109,81 @@ function checkWin() {
     let final_score = 100 - score*3;
     if(final_score<0)final_score=0;
     console.log("gagné ! Score: " + final_score);
+    $score.innerText="Score : "+final_score;
+
+    const user = getDatas("user");
+    const data = getDatas("users");
+    let entry = {};
+
+  if (data[0] != undefined && user[0] != undefined) {
+    data.filter((obj) => obj.email === user.email);
+  }
+    const past = getDatas("score");
+    if(past[0]==undefined){entry.pseudo=data[0].pseudo;
+    entry.score=[];
+    entry.score.push(final_score);}
+    else {past.filter((obj)=> obj.pseudo===data[0].pseudo);
+      
+    past.push(final_score);
+    }
+    setData("score",past);
   }
 }
+
+
+
 
 //transition fenetre de jeu
 
 document.addEventListener("DOMContentLoaded", () => {
-  const $banner = document.querySelector(".banner");
-  $banner.classList.add("transition");
 
-  const $frame = document.querySelector(".frame");
-  $frame.classList.add("transition");
+const $disco_button = document.getElementById("disconnect");
 
-  document.querySelectorAll("a").forEach((link) => {
+const $banner = document.querySelector(".banner");
+$banner.classList.add("transition");
+
+const $frame = document.querySelector(".frame");
+$frame.classList.add("transition");
+
+
+
+ if ($disco_button) {
+   const newButton = $disco_button.cloneNode(true);
+   $disco_button.parentNode.replaceChild(newButton, $disco_button);
+
+   // nouveau listener car sinon conflit
+   newButton.addEventListener(
+     "click",
+     (e) => {
+       e.preventDefault();
+       e.stopPropagation();
+
+       console.log("Début déconnexion");
+       // on desactive le boutton
+       newButton.disabled = true;
+
+           if ($banner.classList.contains("transition"))
+             $banner.classList.remove("transition");
+           else $banner.classList.add("transition");
+
+           if ($frame.classList.contains("transition"))
+             $frame.classList.remove("transition");
+           else $frame.classList.add("transition");
+
+       setTimeout(() => {
+         console.log("Déconnexion...");
+         disconnect(true);
+       }, 500);
+     },
+   ); 
+ }
+
+  hideBtn();
+    document.getElementById("load").classList.remove("loading");
+
+
+  
+  document.querySelectorAll("a:not(#disconnect)").forEach((link) => {
     link.addEventListener("click", (e) => {
       e.preventDefault();
 
