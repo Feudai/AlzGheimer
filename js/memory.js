@@ -1,7 +1,13 @@
-import { displayCards, hideCards, randomCards, chooseGrid } from "./memorySetup.js";
+import {
+  displayCards,
+  hideCards,
+  randomCards,
+  chooseGrid,
+} from "./memorySetup.js";
 import { hideBtn } from "./display.js";
 import { disconnect } from "./profile.js";
 import { getDatas, removeData, setData } from "./storage.js";
+import { Canvas, Particule } from "./classes.js";
 
 let nb_cards = 24;
 let cards = [];
@@ -11,8 +17,9 @@ let times_shuffled = 100;
 let score = 0;
 let enableClick = true;
 
+const partPop = 2000;
 
-nb_cards =chooseGrid(nb_cards);
+nb_cards = chooseGrid(nb_cards);
 //filling hidden cards
 for (let a = 0; a < nb_cards; a++) shown = hideCards(a, shown);
 
@@ -26,6 +33,31 @@ clickCards();
 
 spaceReset();
 
+let canvas = new Canvas();
+
+let particules = [];
+for (let a = 0; a < partPop; a++)
+  particules.push(
+    new Particule(
+      Math.random() * canvas.canvas.width,
+      Math.random() * canvas.canvas.height,
+      canvas
+    )
+  );
+
+requestAnimationFrame(display);
+
+function display() {
+  canvas.ctx.clearRect(0, 0, canvas.canvas.width, canvas.canvas.height);
+
+  particules.forEach((p) => {
+    p.update();
+    p.border();
+    p.show();
+  });
+
+  requestAnimationFrame(display);
+}
 
 //Fonctions
 
@@ -109,48 +141,50 @@ function resetGame() {
 }
 
 function checkWin() {
-      const $score = document.querySelector(".score");
-      $score.innerHTML = "Sacré d'sacré !";
-      
+  const $score = document.querySelector(".score");
+  $score.innerHTML = "Sacré d'sacré !";
+
   if (!shown.includes(false)) {
     let final_score = 100 - score * 3;
     if (final_score < 0) final_score = 0;
     console.log("gagné ! Score: " + final_score);
     $score.innerHTML = "Gagné ! Score : " + final_score;
-    
 
     const user = getDatas("user");
     let data = getDatas("users");
     let entry = {};
 
-    if (data[0] != undefined && user[0] != undefined) {      
+    if (data[0] != undefined && user[0] != undefined) {
       data = data.filter((obj) => obj.email === user[0].email);
     }
-    
+
     let past = getDatas("score");
     removeData("score");
     if (past[0] == undefined) {
       entry.pseudo = data[0].pseudo;
-      entry.score=[]
+      entry.score = [];
       entry.score.push(final_score);
-      setData("score",entry);
+      setData("score", entry);
     } else {
-     past.filter((obj) => obj.pseudo === data[0].pseudo);
+      past.filter((obj) => obj.pseudo === data[0].pseudo);
       const pseudoTemp = past[0].pseudo;
-      const scoreTemp  = past[0].score; //tab
+      const scoreTemp = past[0].score; //tab
       scoreTemp.push(final_score);
       const obj = {};
-      obj.pseudo=pseudoTemp;
+      obj.pseudo = pseudoTemp;
       obj.score = scoreTemp;
       setData("score", obj);
     }
-    
   }
 }
 
 //transition fenetre de jeu
 
 document.addEventListener("DOMContentLoaded", () => {
+  const $noCanvas = document.getElementById("overlayCanvas");
+
+  $noCanvas.className = "no-canvas";
+
   const $disco_button = document.getElementById("disconnect");
 
   const $banner = document.querySelector(".banner");
@@ -181,7 +215,6 @@ document.addEventListener("DOMContentLoaded", () => {
       else $frame.classList.add("transition");
 
       setTimeout(() => {
-        console.log("Déconnexion...");
         disconnect(true);
       }, 500);
     });
@@ -208,6 +241,7 @@ document.addEventListener("DOMContentLoaded", () => {
           $frame.classList.remove("transition");
         else $frame.classList.add("transition");
         //timer pour animer avant le changement de page
+        $noCanvas.className = "no-canvas";
 
         setTimeout(() => {
           window.location.href = link.href;
@@ -215,6 +249,10 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   });
+
+  setTimeout(() => {
+    $noCanvas.className = "overlay-canvas";
+  }, 1000);
 });
 
 //Tests sur des img aléatoires d'un stockage online
@@ -258,5 +296,3 @@ document.addEventListener("DOMContentLoaded", () => {
 //     newImg.setAttribute("srcset", src + " 480px, " + src + " 800px");
 
 //   }
-
-// export {maxCases,showImage};
