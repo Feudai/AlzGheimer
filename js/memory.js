@@ -33,31 +33,41 @@ clickCards();
 
 spaceReset();
 
-let canvas = new Canvas();
+function initializeParticles() {
+  let canvas = new Canvas();
 
-let particules = [];
-for (let a = 0; a < partPop; a++)
-  particules.push(
-    new Particule(
-      Math.random() * canvas.canvas.width,
-      Math.random() * canvas.canvas.height,
-      canvas
-    )
-  );
+  // Wait for canvas to be properly sized
+  setTimeout(() => {
+    let particules = [];
 
-requestAnimationFrame(display);
+    for (let a = 0; a < partPop; a++) {
+      particules.push(
+        new Particule(
+          Math.random() * canvas.canvas.width,
+          Math.random() * canvas.canvas.height,
+          canvas
+        )
+      );
+    }
 
-function display() {
-  canvas.ctx.clearRect(0, 0, canvas.canvas.width, canvas.canvas.height);
+    function display() {
+      canvas.ctx.clearRect(0, 0, canvas.canvas.width, canvas.canvas.height);
 
-  particules.forEach((p) => {
-    p.update();
-    p.border();
-    p.show();
-  });
+      particules.forEach((p) => {
+        p.update();
+        p.show();
+      });
 
-  requestAnimationFrame(display);
+      requestAnimationFrame(display);
+    }
+
+    display();
+  }, 1200); // Slight delay to ensure grid is rendered
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  initializeParticles();
+});
 
 //Fonctions
 
